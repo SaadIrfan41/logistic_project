@@ -1,4 +1,5 @@
 import React from 'react'
+import { motion } from 'framer-motion'
 import {
   AnnotationIcon,
   GlobeAltIcon,
@@ -32,9 +33,27 @@ const services = [
     icon: AnnotationIcon,
   },
 ]
+
+const Variants = {
+  offscreen: {
+    opacity: 0,
+    y: 60,
+  },
+  onscreen: {
+    opacity: 1,
+    y: 0,
+  },
+}
+
 const Services = () => {
   return (
-    <div className='py-12 lg:pt-36 pt-10'>
+    <motion.section
+      initial='offscreen'
+      whileInView='onscreen'
+      viewport={{ once: true, amount: 0.8 }}
+      id='services'
+      className='py-12 lg:pt-10 pt-10'
+    >
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
         <div className='lg:text-center'>
           <p className='mt-2 text-3xl text-center leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl'>
@@ -49,8 +68,15 @@ const Services = () => {
 
         <div className='mt-10'>
           <dl className='space-y-10 md:space-y-0 md:grid md:grid-cols-2 md:gap-x-8 md:gap-y-10'>
-            {services.map((service) => (
-              <div key={service.name} className='relative'>
+            {services.map((service, i) => (
+              <motion.div
+                variants={Variants}
+                transition={{ duration: 0.3, delay: i * 0.2 }}
+                // initial={{}}
+                // animate={{ transition: { duration: 0.5, delay: i * 0.5 } }}
+                key={service.name}
+                className='relative'
+              >
                 <dt>
                   <div className='absolute flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white'>
                     <service.icon className='h-6 w-6' aria-hidden='true' />
@@ -62,12 +88,12 @@ const Services = () => {
                 <dd className='mt-2 ml-16 text-base text-gray-500'>
                   {service.description}
                 </dd>
-              </div>
+              </motion.div>
             ))}
           </dl>
         </div>
       </div>
-    </div>
+    </motion.section>
   )
 }
 

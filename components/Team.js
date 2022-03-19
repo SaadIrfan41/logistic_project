@@ -1,4 +1,5 @@
 import React from 'react'
+import { motion } from 'framer-motion'
 const people = [
   {
     name: 'Leonard Krasner',
@@ -9,7 +10,7 @@ const people = [
     linkedinUrl: '#',
   },
   {
-    name: 'Leonard Krasner',
+    name: 'Mary Carroll ',
     role: 'Senior Designer',
     imageUrl:
       'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cmFuZG9tJTIwcGVvcGxlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60',
@@ -17,7 +18,7 @@ const people = [
     linkedinUrl: '#',
   },
   {
-    name: 'Leonard Krasner',
+    name: 'Leonard Stewart',
     role: 'General Manager',
     imageUrl:
       'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cmFuZG9tJTIwcGVvcGxlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60',
@@ -25,7 +26,7 @@ const people = [
     linkedinUrl: '#',
   },
   {
-    name: 'Leonard Krasner',
+    name: 'Roy Logan',
     role: 'CEO/Founder',
     imageUrl:
       'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cmFuZG9tJTIwcGVvcGxlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60',
@@ -33,7 +34,7 @@ const people = [
     linkedinUrl: '#',
   },
   {
-    name: 'Leonard Krasner',
+    name: 'Catherine Pratt',
     role: 'Operations Manager',
     imageUrl:
       'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8cmFuZG9tJTIwcGVvcGxlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60',
@@ -41,20 +42,33 @@ const people = [
     linkedinUrl: '#',
   },
   {
-    name: 'Leonard Krasner',
+    name: 'Nicolas Foster',
     role: 'Driver',
     imageUrl:
       'https://images.unsplash.com/photo-1463453091185-61582044d556?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
     twitterUrl: '#',
     linkedinUrl: '#',
   },
-
-  // More people...
 ]
+const Variants = {
+  offscreen: {
+    opacity: 0,
+    scale: 0,
+  },
+  onscreen: {
+    opacity: 1,
+    scale: [2, 1],
+  },
+}
 
 const Team = () => {
   return (
-    <div className='bg-gray-900'>
+    <motion.section
+      initial='offscreen'
+      whileInView='onscreen'
+      viewport={{ once: true, amount: 0.4 }}
+      className='bg-gray-900'
+    >
       <div className='mx-auto py-12 px-4 max-w-7xl sm:px-6 lg:px-8 lg:py-24'>
         <div className='space-y-12'>
           <div className='space-y-5 sm:space-y-4 md:max-w-xl lg:max-w-3xl xl:max-w-none'>
@@ -67,8 +81,10 @@ const Team = () => {
             </p>
           </div>
           <ul className='space-y-4 sm:grid sm:grid-cols-2 sm:gap-6 sm:space-y-0 lg:grid-cols-3 lg:gap-8'>
-            {people.map((person) => (
-              <li
+            {people.map((person, i) => (
+              <motion.li
+                variants={Variants}
+                transition={{ duration: 0.3, delay: i * 0.2 }}
                 key={person.name}
                 className='py-10 px-6 bg-gray-800 text-center rounded-lg xl:px-10 xl:text-left'
               >
@@ -124,12 +140,12 @@ const Team = () => {
                     </ul>
                   </div>
                 </div>
-              </li>
+              </motion.li>
             ))}
           </ul>
         </div>
       </div>
-    </div>
+    </motion.section>
   )
 }
 

@@ -9,7 +9,7 @@ import Team from '../components/Team'
 
 const index = () => {
   return (
-    <>
+    <div className='scroll-smooth'>
       <HeroSection />
       <AboutUs />
       <Services />
@@ -17,7 +17,7 @@ const index = () => {
       <Team />
       <ContactUs />
       <Footer />
-    </>
+    </div>
   )
 }
 

@@ -1,13 +1,29 @@
 import React from 'react'
+import { motion } from 'framer-motion'
 
 import { MailIcon, MenuIcon, PhoneIcon, XIcon } from '@heroicons/react/outline'
+const Variants = {
+  offscreen: {
+    opacity: 0,
+    scale: 0,
+  },
+  onscreen: {
+    opacity: 1,
+    scale: [0.1, 1],
+  },
+}
 
 const ContactUs = () => {
   return (
-    <div className='min-h-screen bg-white'>
+    <motion.section
+      variants={Variants}
+      initial='offscreen'
+      whileInView='onscreen'
+      className='min-h-screen bg-white'
+    >
       <main className='overflow-hidden'>
         <div className='bg-warm-gray-50'>
-          <div className='py-24 lg:py-32'>
+          <div id='contact' className='py-24 lg:py-32'>
             <div className='relative z-10 max-w-7xl mx-auto pl-4 pr-8 sm:px-6 lg:px-8'>
               <h1 className='text-4xl text-center font-extrabold tracking-tight text-warm-gray-900 sm:text-5xl lg:text-6xl'>
                 Contact Us
@@ -276,7 +292,7 @@ const ContactUs = () => {
 
         {/* Contact grid */}
       </main>
-    </div>
+    </motion.section>
   )
 }
 

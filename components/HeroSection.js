@@ -6,10 +6,11 @@ import heroImage2 from '../assets/heroImage2.jpg'
 import Image from 'next/image'
 
 const navigation = [
-  { name: 'Home', href: '#' },
-  { name: 'About', href: '#' },
-  { name: 'Services', href: '#' },
-  { name: 'Contact', href: '#' },
+  { name: 'Home', href: '#home' },
+  { name: 'About', href: '#about' },
+  { name: 'Services', href: '#services' },
+  { name: 'Contact', href: '#contact' },
+  { name: 'Pricing', href: '#pricing' },
 ]
 
 const HeroSection = () => {
